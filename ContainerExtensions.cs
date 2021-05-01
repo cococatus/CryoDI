@@ -231,6 +231,12 @@ namespace CryoDI
 				new SingletonProvider<TDerived>(factoryMethod, container.LifeTimeManager, lifeTime), name);
 		}
 
+		public static CryoContainer RegisterUnitySingleton<T>(this CryoContainer container) where T : Component
+		{
+			return container.RegisterProvider<T>(
+				new UnitySingletonProvider<T>(container.LifeTimeManager, LifeTime.Global), null);
+		}
+
 		#endregion Singleton
 
 		#region Instance
